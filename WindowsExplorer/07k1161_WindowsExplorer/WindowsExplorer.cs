@@ -42,25 +42,17 @@ namespace _07k1161_WindowsExplorer
 
 
             #endregion
-
-
-
-
         }
 
 
         private History<TreeNode> history;
 
-        //ko cho trung lap trong history
+        // Khong cho trung lap trong history
         public void KhongTrung()
         {
             history.AllowDuplicates=false;
         }
         
-        
-        
-        
-
         private void history_GotoItem(object sender,HistoryEventArgs<TreeNode> e)
         {
             //TreeNode temp = e.Item;
