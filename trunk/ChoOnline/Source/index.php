@@ -98,7 +98,13 @@
 					?>
 				</dl>
 				<dl>
-					<dt></dt>
+				<?php
+					if($count == 1 )
+					{
+						echo "<dt>Tài khoản</dt>";
+						echo "<dd><a href='thong-tin-tai-khoan.php'>Quản lí tài khoản</a></dd>";
+					}
+				?>	
 				</dl>
 			</div>
 			<div id="content">
