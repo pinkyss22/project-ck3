@@ -103,11 +103,13 @@
 				</dl>
 			</div>
 			<div id="content">
-				<form action="edit-submit.php" method="post">
 					<?php
 						$con = mysqli_connect('localhost','root','root','choonline1');
 						$result = mysqli_query ($con, "SELECT * FROM tai_khoan WHERE Ten_dang_nhap = '$name'");
 						$row = mysqli_fetch_array($result);
+					?>
+				<form action="edit-submit.php?id=1" method="post">
+					<?php
 						echo "Tên tài khoản: ";
 						echo $row['Ten_dang_nhap'];;
 						echo "</br>";
@@ -115,16 +117,34 @@
 						echo "</br>";
 						echo "Nhập mật khẩu mới: <input type = 'password' name = 'mat_khau_moi' placeholder = 'Nhập mật khẩu mới' size= '14' >";
 						echo "</br>";
+						echo "<input type='submit' value ='Xác nhận'>";
+					?>
+				</form>
+				</br>
+				<form action = "edit-submit.php?id=2" method="post">
+					<?php
 						echo "Họ tên: ";
 						echo $row['Ho_ten'];
 						echo "</br>";
 						echo "Cập nhật họ tên: <input type = 'text' name = 'ho_ten' placeholder ='Nhập họ tên'>";
 						echo "</br>";
+						echo "<input type='submit' value = 'Xác nhận'>";
+					?>
+				</form>
+				</br>
+				<form action = "edit-submit.php?id=3" method="post">
+					<?php
 						echo "Địa chỉ: ";
 						echo $row['Dia_chi'];
 						echo "</br>";
 						echo "Cập nhật lại địa chỉ: <input type = 'text' name = 'dia_chi' placeholder ='Nhập địa chỉ'>";
 						echo "</br>";
+						echo "<input type='submit' value = 'Xác nhận'>";
+					?>
+				</form>
+				</br>
+				<form action = "edit-submt?id=4" method = "post">
+					<?php
 						echo "Số điện thoại: ";
 						echo $row['So_dien_thoai'];
 						echo "</br>";
