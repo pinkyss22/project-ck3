@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: choonline1
 Target Host: localhost
 Target Database: choonline1
-Date: 5/19/2013 11:28:09 PM
+Date: 5/20/2013 5:36:54 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -19,9 +19,7 @@ CREATE TABLE `binh_luan` (
   `Binh_luan` text,
   PRIMARY KEY (`Ma_tai_khoan`),
   KEY `Ma_tai_khoan` (`Ma_binh_luan`),
-  KEY `binhluan_sanpham` (`Ma_san_pham`),
-  CONSTRAINT `binhluan_sanpham` FOREIGN KEY (`Ma_san_pham`) REFERENCES `san_pham` (`Ma_san_pham`),
-  CONSTRAINT `binhluan_taikhoan` FOREIGN KEY (`Ma_tai_khoan`) REFERENCES `tai_khoan` (`Ma_tai_khoan`)
+  KEY `binhluan_sanpham` (`Ma_san_pham`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -105,17 +103,17 @@ CREATE TABLE `san_pham` (
 -- ----------------------------
 DROP TABLE IF EXISTS `tai_khoan`;
 CREATE TABLE `tai_khoan` (
-  `Ma_tai_khoan` int(10) unsigned NOT NULL DEFAULT '0',
+  `Ma_tai_khoan` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Ten_dang_nhap` varchar(255) DEFAULT NULL,
   `Mat_khau` varchar(255) DEFAULT NULL,
   `Ma_loai_tai_khoan` int(10) unsigned DEFAULT NULL,
   `Ma_tinh_trang` int(10) unsigned DEFAULT NULL,
-  `Thoi_gian_khoa` int(11) DEFAULT NULL,
   `Email` varchar(255) DEFAULT NULL,
-  `So_dien_thoai` int(10) unsigned DEFAULT NULL,
-  `Dia_chi` varchar(255) DEFAULT NULL,
+  `So_dien_thoai` text,
+  `Dia_chi` text,
+  `Ho_ten` text,
   PRIMARY KEY (`Ma_tai_khoan`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for tham_so
@@ -264,12 +262,8 @@ INSERT INTO `san_pham` VALUES ('72', null, null, null, null, null, '12', null, n
 INSERT INTO `san_pham` VALUES ('73', null, null, null, null, null, '12', null, null, null, null);
 INSERT INTO `san_pham` VALUES ('74', null, null, null, null, null, '12', null, null, null, null);
 INSERT INTO `san_pham` VALUES ('75', null, null, null, null, null, '12', null, null, null, null);
-INSERT INTO `tai_khoan` VALUES ('0', 'top123', '123456', '1', null, null, 'sdfsdf', '87686', 'sdfsdf');
-INSERT INTO `tai_khoan` VALUES ('1', 'seller01', '123456', '1', '1', null, 'Seller1@gmail.com', '123456789', 'Quảng Trị');
-INSERT INTO `tai_khoan` VALUES ('2', 'seller02', '123456', '1', '2', null, 'Seller2@gmail.com', '1234567890', 'Quảng Ngãi');
-INSERT INTO `tai_khoan` VALUES ('3', 'buyer01', '123456', '2', '1', null, 'Buyer01@gmail.com', '123123123', 'Huế');
-INSERT INTO `tai_khoan` VALUES ('4', 'buyer02', '123456', '2', '1', null, 'Buyer02@gmail.com', '564343', 'Đà Nẵng');
-INSERT INTO `tai_khoan` VALUES ('5', 'admin001', '123456', '3', '1', null, 'Admin001@gmail.com', '123123123', 'Quảng Trị');
+INSERT INTO `tai_khoan` VALUES ('1', 'seller01', '999999999', '1', '1', 'phuocvoquang@gmail.com', '12345678', 'Quảng Trị', null);
+INSERT INTO `tai_khoan` VALUES ('2', 'seller02', '123456', '2', '1', 'tester1@gmail.com', '053.3828137', 'tp. Hồ Chid Minh', null);
 INSERT INTO `tinh_trang_san_pham` VALUES ('0', 'còn hàng');
 INSERT INTO `tinh_trang_san_pham` VALUES ('1', 'hết hàng');
 INSERT INTO `trang_thai_tai_khoan` VALUES ('0', 'Đã kích hoạt', null);
