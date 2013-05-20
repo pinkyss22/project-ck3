@@ -10,13 +10,7 @@
 	$mail = $_POST['mail'];
 	$type = $_POST['type'];
 ?>
-<?php
-	if(dem ==7)
-	{
-		$con = mysqli_connect('localhost','root','root','choonline1');
-		mysqli_query($con, "INSERT INTO tai_khoan ()");
-	}
-?>
+
 <html>
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -35,7 +29,7 @@
 						Tài khoẻn: <input name="txtUser" type="txt" size="15" maxlength="20" width="15">
 						Mật khẩu: <input name="txtPassWord" type="password" size="15" maxlength="20" width="15">
 						<input type="submit" value="Đăng nhập">
-						<input type="button" value="Đăng ký" onclick="Register.php">
+						<input type="button" value="Đăng ký" onclick="Register-submit.php">
 					</form>
 				</div>
 				<!-- auto slide-->
@@ -91,8 +85,9 @@
 				</dl>
 			</div>
 			<div id="content">
+			
 				<form action="register-submit.php" method="post">
-				<?php
+	<?php
 					$dem=0;
 				?>
 					<h3>.:Thông tin người dùng:.</h3>
@@ -187,10 +182,10 @@
 					?>
 					</br>
 					<h3>.:Phân loại người dùng:.</h3>
-					<input type="radio" name="type" value="seller"> Bán hàng</br>
-					<input type="radio" name="type" value="buyer"> Mua hàng</br>
+					<form>
+					<input type="number" name="type" min="1" max="2"> 1.Bán hàng</br>2.Mua hàng
 					<?
-						if(strlen($type)==0)
+						if($type!= 1 && $type!=2)
 						(
 							echo "chọn lai loại tài khoản";
 						)
@@ -198,8 +193,28 @@
 						{
 							$dem++;
 						}
+						echo dem;
 					?>
+					</form>
 					<div id="submit"><input type="submit" value="Đăng kí"></div>
+					<?php
+						$con = mysqli_connect('localhost','root','root','choonline1');
+						$result =mysqli_query($con, "SELECT * FROM tai_khoan");
+						//$id = mysqli_num_rows($result);
+						//$id++;
+						//echo "so dong";
+						//echo $id;
+						if($dem ==6)
+						{
+							$sql =  "INSERT INTO tai_khoan (Ten_dang_nhap,Mat_khau, Ma_loai_tai_khoan, Email, So_dien_thoai, Dia_chi, Ho_ten) VALUES ( '$_POST[fUsername]','$_POST[fPassword]',  '$_POST[type]', '$_POST[mail]', '$_POST[fPhone]', '$_POST[fAddress]', '$_POST['fName']')";
+							if (!mysqli_query($con,$sql))
+							{
+								die('Error: ' . mysqli_error($con));
+							}
+							echo "1 record added";
+						}
+						mysqli_cloes($con);
+					?>
 			</form>
 			</div>
 			<div id="footer"></div>

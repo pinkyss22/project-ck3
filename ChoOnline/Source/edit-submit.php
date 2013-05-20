@@ -1,6 +1,5 @@
 <?php 
 	session_start();
-	$count="";	
 ?>
 <?php
 	if(isset ($_SESSION['name']))
@@ -8,6 +7,14 @@
 		$count = 1;
 		$name = $_SESSION['name'];
 	}
+?>
+
+<?php 
+		$mat_khau_cu = $_POST['mat_khau_cu'];
+		$mat_khau_moi = $_POST['mat_khau_moi'];
+		$ho_ten = $_POST['ho_ten'];
+		$dia_chi = $_POST ['dia_chi'];
+		$so_dien_thoai = $_POST['so_dien_thoai'];
 ?>
 <html>
 	<head>
@@ -99,28 +106,53 @@
 				</dl>
 			</div>
 			<div id="content">
-			<h2>Thông tin tài khoản</h2>
-			<div id="edit"><a href="edit.php">Chỉnh sữa</a></div>
-			<?php
-				$con = mysqli_connect('localhost','root','root','choonline1');
-				$result = mysqli_query($con, "SELECT * FROM tai_khoan WHERE Ten_dang_nhap = '$name' ");
-				$row = mysqli_fetch_array($result);
-				echo "<div> Tên đăng nhập:";
-					echo $row['Ten_dang_nhap'];
-				echo "</div>";
-				echo "<div> Email: ";
-					echo $row['Email'];
-				echo "</div>";
-				echo "<div>Số điện thoại:";
-					echo $row['So_dien_thoai'];
-				echo "</div>";
-				echo "<div>Địa chỉ: ";
-					echo $row['Dia_chi'];
-				echo "</div>";
-				mysql_error();
-				mysql_errno();
-				mysqli_close($con);
-			?>				
+				<form action="edit-submit.php" method="post">
+					<?php
+						$con = mysqli_connect('localhost','root','root','choonline1');
+						$result = mysqli_query ($con, "SELECT * FROM tai_khoan WHERE Ten_dang_nhap = '$name'");
+						$row = mysqli_fetch_array($result);
+						echo "Tên tài khoản: ";
+						echo $row['Ten_dang_nhap'];;
+						echo "</br>";
+						echo "Nhập mật khẩu củ: <input type='password' name = 'mat_khau_cu'  placeholder= 'Nhập mật khẩu củ' size ='14'>";
+							if($mat_khau_cu != $row['Mat_khau'])
+							{
+								echo "Mật khẩu củ không đúng! Nhập lại mật khẩu!";
+							}
+						echo "</br>";
+						echo "Nhập mật khẩu mới: <input type = 'password' name = 'mat_khau_moi' placeholder = 'Nhập mật khẩu mới' size= '14' >";
+							if(strlen($mat_khau_moi) < 6)
+							{
+								echo "Mật khẩu phải có đọ dài hơn 6 kí tự!";
+							}
+						echo "</br>";
+						echo "Họ tên: ";
+						echo $row['Ho_ten'];
+						echo "</br>";
+						echo "Cập nhật họ tên: <input type = 'text' name = 'ho_ten' placeholder ='Nhập họ tên'>";
+						echo "</br>";
+						echo "Địa chỉ: ";
+						echo $row['Dia_chi'];
+						echo "</br>";
+						echo "Cập nhật lại địa chỉ: <input type = 'text' name = 'dia_chi' placeholder ='Nhập địa chỉ'>";
+						echo "</br>";
+						echo "Số điện thoại: ";
+						echo $row['So_dien_thoai'];
+						echo "</br>";
+						echo "Cập nhật lại số diện thoại: <input type = 'text' name = 'so_dien_thoai' placeholder ='Nhập Số diện thoại'>";
+						echo "</br>";
+						echo "<input type='submit' value='Xác nhận'>";
+					?>
+					<?php
+											
+						$con = mysqli_connect('localhost','root','root','choonline1');
+						//mysqli_query($con,"UPDATE Persons SET Age=36 WHERE FirstName='Peter' AND LastName='Griffin'");
+						mysqli_query($con, "UPDATE tai_khoan SET Mat_khau = $mat_khau_moi WHERE Ten_dang_nhap = '$name'");
+						mysqli_query($con, "UPDATE tai_khoan SET Ho_ten = $ho_ten WHERE Ten_dang_nhap = '$name'");
+						mysqli_query($con, "UPDATE tai_khoan SET Dia_chi = $dia_chi WHERE Ten_dang_nhap = '$name'");
+						mysqli_query($con, "UPDATE tai_khoan SET So_dien_thoai = $so_dien_thoai WHERE Ten_dang_nhap = '$name'");
+					?>
+				</form>
 			</div>
 			<div id="footer"></div>
 		</div>

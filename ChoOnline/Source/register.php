@@ -13,10 +13,10 @@
 				</a>
 				<div id="login">
 					<form name="flogin" action="Login.php" method="post">
-						Tài khoẻn: <input name="txtUser" type="txt" size="15" maxlength="20" width="15">
-						Mật khẩu: <input name="txtPassWord" type="password" size="15" maxlength="20" width="15">
+						Tài khoẻn: <input name="txtUser" type="txt" size="12" maxlength="20" width="15">
+						Mật khẩu: <input name="txtPassWord" type="password" size="12" maxlength="20" width="15">
 						<input type="submit" value="Đăng nhập">
-						<input type="button" value="Đăng ký" onclick="Register.php">
+						<input type="button" value="Đăng ký" onclick="Register-submit.php">
 					</form>
 				</div>
 				<!-- auto slide-->
@@ -73,28 +73,27 @@
 			</div>
 			<div id="content">
 				<form action="register-submit.php" method="post">
-				<?php
-					$dem=0;
-				?>
 					<h3>.:Thông tin người dùng:.</h3>
-					<div>Tên đăng nhập:	<div class="iput"><input type="text" name="fUsername" width="800"></div></div>
+						<div>
+							Tên đăng nhập:	<div class="iput"><input type="textbox" name="fUsername" width="800"></div></div>
+						</br>
+						<div>
+							Mật khẩu:	<div class="iput"><input type="password" name="fPassword"></div>
+						</div>
 					</br>
-					<div>Mật khẩu:	<div class="iput"><input type="password" name="fPassword">
-					</div></div>
-					</br>
-					</br>
-					<div>Thông tin cá nhân:
-					</br>
-					<div>Họ và tên:<div class="iput"><input type="text" name="fName"></div></div>
-					</br>
-					<div>Địa chỉ:<div class="iput"><input type ="text" name="fAddress"></div></div>
-					</br>
-					<div>Số điện thoại:<div class="iput"><input type="text" name="fPhone"></div> </div>
-					</br>
-					<h3>.:Phân loại người dùng:.</h3>
-					<input type="radio" name="seller" value="seller"> Bán hàng</br>
-					<input type="radio" name="buyer" value="buyer"> Mua hàng
-					</br>
+						</br>
+						<div>Thông tin cá nhân:
+						</br>
+						<div>Họ và tên:<div class="iput"><input type="textbox" name="fName"></div></div>
+						</br>
+						<div>Email: <div class="iput"><input type="text" name="mail"></div></div>
+						</br>
+						<div>Địa chỉ:<div class="iput"><input type ="textbox" name="fAddress"></div></div>
+						</br>
+						<div>Số điện thoại:<div class="iput"><input type="text" name="fPhone"></div> </div>
+						</br>
+						<h3>.:Phân loại người dùng:.</h3>
+						<input type="number" name="type" min="1" max="2"> 1.Bán hàng</br>2.Mua hàng
 					<div id="submit"><input type="submit" value="Đăng kí"></div>
 			</form>
 			</div>
