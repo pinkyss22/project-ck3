@@ -7,10 +7,7 @@
 	{
 		$count = 1;
 		$name = $_SESSION['name'];
-	}
-	else
-	{
-		header ('Location: index.php');
+		//$data =  $_SESSION['data'];
 	}
 ?>
 <html>
@@ -31,8 +28,8 @@
 						if($count != 1 )
 						{?>
 								<form name="flogin" action="Login.php" method="post">
-								Tài khoản: <input name="txtUser" type="txt" size="15" maxlength="20" width="15">
-								Mật khẩu: <input name="txtPassWord" type="password" size="15" maxlength="20" width="15">
+								Tài khoản: <input name="txtUser" type="txt" size="12" maxlength="20" width="10">
+								Mật khẩu: <input name="txtPassWord" type="password" size="12" maxlength="20" width="10">
 								<input type="submit" value="Đăng nhập">
 								<a href="register.php"><input type="button" value="Đăng ký"></a>
 							</form>
@@ -85,7 +82,7 @@
 				<img src="img/header_2.png" width="900">
 			</div>
 			<div id="siderbar">
-			<dl>
+				<dl>
 					<dt>Danh mục sản phẩm</dt>
 					<?php
 						$con = mysqli_connect('localhost','root','root','Choonline1');
@@ -101,116 +98,81 @@
 					?>
 				</dl>
 				<dl>
-					<dt>Quản lí tài khoản</dt>
-					<dd><a href="thong-tin-tai-khoan.php">Thông tin tài khoản</a></dd>
-					<?php
-						if($_SESSION['type'] == 1)
-						{
-							echo	"<dd><a href='don-hang.php'>Đơn hàng</a></dd>";
-							echo 	"<dd><a href='Up-san-pham.php'>Up sản phẩm</a></dd>";
-							echo 	"<dd><a href='quan-li-san-pham.php'>Quản lí sản phẩm</a></dd>";
+				<?php						
+					if($count == 1 )
+					{						
+						$con1 = mysqli_connect('localhost','root','root','choonline1');
+						$a = mysqli_query($con1, "SELECT * FROM tai_khoan WHERE Ten_dang_nhap = '$name'"); 
+						$row1 = mysqli_fetch_array($a);
+						$ma_loai_tai_khoan = $row1['Ma_loai_tai_khoan'];
+						echo "<dt>Tài khoản</dt>";
+						echo "<dd><a href='thong-tin-tai-khoan.php'>quản lý tài khoản</a></dd>";
+						if($ma_loai_tai_khoan == 3)
+						{							
+							echo "<dd>";
+								echo "<a href='quan-ly-tai-khoan-nguoi-dung.php'>";
+									echo "Quản lý tài khoản người dùng";
+								echo "</a>";
+							echo "</dd>";
+							echo "<dd>";
+								echo "<a href=''>";
+									echo "Quản lý danh mục";
+								echo "</a>";
+							echo "</dd>";
+							echo "<dd>";
+								echo "<a href=''>";
+									echo "Quản lý giao diện";
+								echo "</a>";
+							echo "</dd>";
 						}
-						else if($_SESSION['type'] == 2)
-						{
-							echo 	"<dd><a href='gio-hang.php'>Giỏ hàng</a></dd>";
-						}
-					?>
+					}
+					
+				?>	
 				</dl>
 			</div>
 			<div id="content">
-			<h2>Up sản phẩm</h2>
-				<?php
-					$ten_san_pham = $_POST['ten_san_pham'];
-					$gia_ban = $_POST['gia_ban'];
-					$so_luong = $_POST['so_luong'];
-					$thong_tin = $_POST['thong_tin'];
-					$ma_danh_muc= $_POST['danh_muc'];
-					$hinh_anh = $_FILES['hinh_anh']['name'];
-					$dem =0;
-				?>
-			<form action = 'up-san-pham-submit.php' method= 'post' enctype="multipart/form-data">
-					<div> <b>Tên sản phẩm:</b><input type = "text" name = "ten_san_pham"></div>
+			<h2>Quản lí danh mục</h2>
+				<table border ="1">
+					<tr>
+						<td><b>STT</b></td>
+						<td><b>Tên danh mục</b></td>
+						<td><b>Sữa</b></td>
+						<td><b>Xoá</b></td>
+					<tr>
 					<?php
-						if(strlen($ten_san_pham) == 0)
+						$con = mysqli_connect('localhost','root','root','choonline1');
+						$result = mysqli_query($con, "SELECT * FROM danh_muc");
+						while($row = mysqli_fetch_array($result))
 						{
-							echo "<b>"; 
-							echo "Chưa nhập tên sản phẩm!";
-							echo "</b>";
-						}
-						else
-						{
-							$dem++;
+							echo "<tr>";
+								echo "<td>";
+									echo $row['Ma_danh_muc'];
+								echo "</td>";
+								echo "<td>";
+									echo $row['Ten_danh_muc'];
+								echo "</td>";
+								echo "<td>";
+								$ma_danh_muc = $row['Ma_danh_muc'];
+									echo "<form action = 'chinh-sua-ten-danh-muc.php?id=$ma_danh_muc' method='post'>" ;
+										echo "Tên mới:";
+										echo "<input type ='text' name = 'ten_moi'>";
+										echo "<input type='submit' value ='Xác nhận'>";
+									echo '</form>';
+								echo "</td>";
+								echo "<td>";
+									echo "<form action = 'Xoa-danh-muc.php?id=$ma_danh_muc' method='post'>";	
+										echo "<input type='submit' value='Xóa'>";
+									echo "</form>";
+								echo "</td>";
+								echo "</tr>";
 						}
 					?>
-					<div><b>Giá bán:</b><input type = "text" name = "gia_ban"></div>
-					<?php
-						if(strlen($gia_ban) == 0)
-						{
-							echo "<b>"; 
-							echo "Chưa nhập giá bán!";
-							echo "</b>";
-						}
-						else
-						{
-							$dem++;
-						}
-					?>
-					<div><b>Danh mục</b><select name ="danh_muc">
-						<option value ="1">Điện thoại</option>
-						<option value ="2">Máy tính</option>
-						<option value ="3">Thời trang</option>
-						<option value ="4">Mĩ phẩm</option>
-						<option value ="5">Ba lô</option>
-						<option value ="6">Mắt kính</option>
-						<option value ="7">Đồ chơi</option>
-						<option value ="8">Điện gia dụng</option>
-						<option value ="9">Mãy ảnh</option>
-						<option value ="10">X-teen</option>
-						<option value ="11">Linh kiện</option>
-					</select></div>
-					<div><b>Số lượng:</b><input type = "number" name = "so_luong" min ="1"></div>
-					<?php
-						if(strlen($so_luong)==0)
-						{
-							echo "<b>";
-							echo "bạn chưa chon số lượng!";
-							echo "</b>";
-						}
-						else
-						{
-							$dem++;
-						}
-					?>
-					<div><b>Thông tin</b><input type="text" name = "thong_tin"></div>
-					<?php
-						if(strlen($thong_tin) == 0)
-						{
-							echo "<b>"; 
-							echo "Chưa nhập thông tin sản phẩm!";
-							echo "</b>";
-						}
-						else
-						{
-							$dem++;
-						}
-					?>
-					<div><b>HÌnh ảnh</b><input type ="file" name = "hinh_anh"></div>
-					<input type="submit" value ="Xác nhận">
-					<?php
-						if($dem==4)
-						{
-							$con1 = mysqli_connect('localhost','root','root','choonline1');
-							$result1 = mysqli_query($con1,"SELECT * FROM tai_khoan WHERE Ten_dang_nhap = '$name'" );
-							$row1 = mysqli_fetch_array($result1);
-							$ma_nguoi_ban = $row1['Ma_tai_khoan'];
-							mysqli_query ($con1, "INSERT INTO san_pham (Ten_san_pham, Gia_ban, Hinh_dai_dien, Ma_danh_muc, Dac_ta, Ma_tinh_trang, So_luong_ton, So_luong_ban, So_luot_xem, Ma_nguoi_ban) VALUES('$_POST[ten_san_pham]', '$_POST[gia_ban]', 'image/$hinh_anh','$_POST[danh_muc]', '$_POST[thong_tin]', '1', '$_POST[so_luong]', '0', '0', '$ma_nguoi_ban')");
-							move_uploaded_file($_FILES["hinh_anh"]["tmp_name"], "images/" . $hinh_anh);
-							//san_pham (Ten_san_pham, Gia_ban, Hinh_dai_dien, Ma_danh_muc) VALUE ('$_POST[ten_san_pham]', '$_POST[gia_ban]', 'image/$hinh_anh'),'$_POST[danh_muc]'
-							mysqli_close($con1);
-						}
-						
-					?>
-			</form>
+				</table>		
+									<h3><b>Thêm danh mục:</b></h3>
+									<form action = "them-danh-muc.php" method="post">
+									<input type ="text" name = "ten_danh_muc">
+									<input type="submit" value="Thêm">
+									</form>		
 			</div>
 			<div id="footer"></div>
 		</div>
