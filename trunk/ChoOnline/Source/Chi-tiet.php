@@ -5,7 +5,7 @@
 <?php
 	if(isset ($_SESSION['name']))
 	{
-		$count = 1;
+		$dem = 1;
 		$name = $_SESSION['name'];
 		//$data =  $_SESSION['data'];
 	}
@@ -30,7 +30,7 @@
 				</a>
 				<div id="login">
 					<?php
-						if($count != 1 )
+						if($dem != 1 )
 						{?>
 								<form name="flogin" action="Login.php" method="post">
 								Tài khoản: <input name="txtUser" type="txt" size="12" maxlength="20" width="15">
@@ -169,8 +169,7 @@
 							echo "<div id='Mota'>";
 							echo "Bình luận:";
 							echo "</div>";
-							
-							mysqli_query($con, "INSERT INTO  gio_hang (ma_gio_hang, ma_san_pham) VALUE (1, 2')");
+							//mysqli_query($con, "INSERT INTO  gio_hang (ma_gio_hang, ma_san_pham) VALUE (1, 2')");
 							//while($row = mysqli_fetch_array($result))
 							//	{
 							//		//----------COMMENT
@@ -190,11 +189,35 @@
 								//	echo "</table>";
 									//-----------
 								//}	
+							if($dem == 1)
+							{
+								echo"<div>";
+								$ma_san_pham = $row['Ma_san_pham'];
+									echo "<textarea rows='4' cols='50' name='comment' form='cmt'>";
+									echo "Enter text here...";
+									echo "</textarea>";
+								echo "</div>";
+								echo "<form action='comment.php?id=$ma_san_pham', method='post' id='cmt' style:float='left'>";					
+									echo "<input type ='submit' value='Gữi'>";								
+								echo "<form>";
+							}	
+							$ma_sp= $row['Ma_san_pham'];
+							$binh_luan = mysqli_query($con, "SELECT * FROM binh_luan WHERE Ma_san_pham = $ma_sp");
+							while($row1=mysqli_fetch_array($binh_luan))
+							{	echo "<b>";
+								#	echo $row['Ten'];
+								echo "</b>";
+								echo $row1['Binh_luan'];
+								echo "</br>";
+							}
+							echo "<div>";
+							echo "</div>";
 								break;
 						}
 						else
 							$chay++;
 					}
+					mysqli_close($con);
 				?>
 				</div>
 			</div>
