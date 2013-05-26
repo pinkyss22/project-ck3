@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: choonline1
 Target Host: localhost
 Target Database: choonline1
-Date: 5/22/2013 10:03:40 AM
+Date: 5/26/2013 2:44:52 PM
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -13,14 +13,12 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `binh_luan`;
 CREATE TABLE `binh_luan` (
-  `Ma_tai_khoan` int(10) unsigned NOT NULL DEFAULT '0',
+  `Ma_binh_luan` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `Ma_tai_khoan` int(10) unsigned DEFAULT NULL,
   `Ma_san_pham` int(10) unsigned DEFAULT NULL,
-  `Ma_binh_luan` int(10) unsigned DEFAULT NULL,
   `Binh_luan` text,
-  PRIMARY KEY (`Ma_tai_khoan`),
-  KEY `Ma_tai_khoan` (`Ma_binh_luan`),
-  KEY `binhluan_sanpham` (`Ma_san_pham`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`Ma_binh_luan`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for chi_tiet_don_hang
@@ -40,12 +38,11 @@ CREATE TABLE `chi_tiet_don_hang` (
 -- ----------------------------
 DROP TABLE IF EXISTS `danh_muc`;
 CREATE TABLE `danh_muc` (
-  `Ma_danh_muc` int(10) unsigned NOT NULL DEFAULT '0',
+  `Ma_danh_muc` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Ten_danh_muc` varchar(255) DEFAULT NULL,
-  `Logo` varchar(255) DEFAULT NULL,
   `Bi_xoa` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`Ma_danh_muc`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for don_hang
@@ -64,8 +61,9 @@ CREATE TABLE `don_hang` (
 -- ----------------------------
 DROP TABLE IF EXISTS `gio_hang`;
 CREATE TABLE `gio_hang` (
-  `ma_gio_hang` int(10) unsigned NOT NULL DEFAULT '0',
+  `ma_gio_hang` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `ma_san_pham` int(10) unsigned DEFAULT NULL,
+  `so_luong` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`ma_gio_hang`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -96,14 +94,14 @@ CREATE TABLE `san_pham` (
   `So_luot_xem` int(10) unsigned DEFAULT NULL,
   `Ma_nguoi_ban` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`Ma_san_pham`)
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for tai_khoan
 -- ----------------------------
 DROP TABLE IF EXISTS `tai_khoan`;
 CREATE TABLE `tai_khoan` (
-  `Ma_tai_khoan` decimal(10,0) unsigned NOT NULL,
+  `Ma_tai_khoan` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Ten_dang_nhap` varchar(255) DEFAULT NULL,
   `Mat_khau` varchar(255) DEFAULT NULL,
   `Ma_loai_tai_khoan` int(10) unsigned DEFAULT NULL,
@@ -113,7 +111,7 @@ CREATE TABLE `tai_khoan` (
   `Dia_chi` text,
   `Ho_ten` text,
   PRIMARY KEY (`Ma_tai_khoan`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for tham_so
@@ -171,34 +169,32 @@ CREATE TABLE `trang_thai_tai_khoan` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `binh_luan` VALUES ('1', '1', null, 'Hàng Việt Nam chất lượng cao.');
-INSERT INTO `danh_muc` VALUES ('1', 'Điện thoại', null, null);
-INSERT INTO `danh_muc` VALUES ('2', 'Máy tính', null, null);
-INSERT INTO `danh_muc` VALUES ('3', 'Thời trang', null, null);
-INSERT INTO `danh_muc` VALUES ('4', 'Mĩ phẩm', null, null);
-INSERT INTO `danh_muc` VALUES ('5', 'Ba lô', null, null);
-INSERT INTO `danh_muc` VALUES ('6', 'Mắt Kính', null, null);
-INSERT INTO `danh_muc` VALUES ('7', 'Đồ chơi', null, null);
-INSERT INTO `danh_muc` VALUES ('8', 'Điện Gia dụng', null, null);
-INSERT INTO `danh_muc` VALUES ('9', 'Máy ảnh', null, null);
-INSERT INTO `danh_muc` VALUES ('10', 'X-teen', null, null);
-INSERT INTO `danh_muc` VALUES ('11', 'Linh kiện ', null, null);
-INSERT INTO `danh_muc` VALUES ('12', null, null, null);
+INSERT INTO `binh_luan` VALUES ('11', '2', '7', 'ascgjscjsdcjasj');
+INSERT INTO `binh_luan` VALUES ('12', '2', '7', 'sdfsdfsdf');
+INSERT INTO `binh_luan` VALUES ('13', '2', '7', 'asdasdasdasd');
+INSERT INTO `binh_luan` VALUES ('14', '2', '8', 'asdasdasd');
+INSERT INTO `binh_luan` VALUES ('15', '2', '8', 'Enter text here...hang viet nam chat luong cao\r\n');
+INSERT INTO `danh_muc` VALUES ('1', 'Điện thoại', null);
+INSERT INTO `danh_muc` VALUES ('2', 'Máy tính', null);
+INSERT INTO `danh_muc` VALUES ('3', 'Đồng hồ', null);
+INSERT INTO `danh_muc` VALUES ('4', 'Đồ chơi', null);
+INSERT INTO `danh_muc` VALUES ('5', 'Điện gia dụng', null);
+INSERT INTO `danh_muc` VALUES ('20', 'Mĩ phẩm', null);
 INSERT INTO `loai_tai_khoan` VALUES ('1', 'Người bán');
 INSERT INTO `loai_tai_khoan` VALUES ('2', 'Người mua');
 INSERT INTO `loai_tai_khoan` VALUES ('3', 'admin');
-INSERT INTO `san_pham` VALUES ('1', 'Bobi Craft 103BRW-XL – Gia đình nhà gấu / 30cm', '579000', null, 'Bộ thú bông gia đình nhà gấu Bobi Craft 103BRW-XL được làm hoàn toàn bằng tay nên rất tinh xảo và mang giá trị nghệ thuật cao. Bên cạnh đó chất liệu len nhập khẩu cao cấp cho sản phẩm màu sắc đẹp mắt và đặc biệt an toàn cho bé khi sử dụng. Với bộ thú bông gia đình nhà gấu, bé sẽ thỏa thích chơi trò chơi gia đình để phát triển khả năng ngôn ngữ trong quá trình giao tiếp với những người bạn nhỏ này.', '1', '7', null, null, null, '1');
-INSERT INTO `san_pham` VALUES ('2', 'Dragon Itoys - Chuột hamster Chatimals biết nói  Hồng', '399000', null, 'Chú chuột hamster Chatimals Dragon Itoys xinh xắn biết nói sẽ sớm trở thành người bạn thân thiết với bé những khi bố mẹ bận rộn và phải để bé chơi 1 mình. Chỉ cần nhấn vào bàn tay trái của chú chuột và nói chuyện với chú ta, chú sẽ lặp lại bất cứ điều gì bạn nói, thậm chí là miệng chú ta còn cử động thật sự. Đặc biệt, Chú chuột hamster Chatimals Dragon Itoys còn có thể chọn cách đáp lại bằng giọng cao hay thấp để gây nên sự bất ngờ thú vị và sẽ khiến bất cứ ai nghe thấy đều phải bật cười. Chú chuột có hình dáng tròn trịa của một con thú nhồi bông và khoác lên mình lớp lông mềm mại sẽ càng giúp các bé yêu chú thêm.\r\n\r\nChú chuột hamster Chatimals Dragon Itoys xinh xắn biết nói sẽ sớm trở thành người bạn thân thiết với bé những khi bố m', '1', '7', null, null, null, '1');
-INSERT INTO `san_pham` VALUES ('3', 'Disney – Thú nhồi bông Mickey / 14cm', '129000', null, 'hú nhồi bông là một trong những người bạn thơ ấu thân thiết của mọi trẻ nhỏ. Bố mẹ hãy trang bị cho bé yêu nhà mình một chú chuột Mickey Disney xinh xắn có thiết kế kiểu dáng đứng cho bé dễ dàng ôm khi chơi hay khi ngủ. Sản phẩm được làm từ chất liệu bông mềm mại sẽ cho bé yêu cảm giác được ôm ấp, vuốt ve, dễ chịu, đỡ quấy khóc hơn. Ngoài ra, chú chuột Mickey Disney còn có thể trở thành một món đồ nội thất ngộ nghĩnh cho gia đình bạn. ', '1', '7', null, null, null, '1');
-INSERT INTO `san_pham` VALUES ('4', 'Kiddy Clay SKB12 – Đất nặn và bộ phụ kiện hình thú', '109000', null, 'Được tự tay tạo ra những con vật, cây cối bằng đất sét luôn khiến trẻ thích thú. Bé được thỏa sức sáng tạo hay mô phỏng những con vật, đồ vật xung quanh bằng chính đôi bàn tay của mình. Việc này không những giúp bé rèn luyện sự khéo léo mà còn góp phần phát triển tư duy nghệ thuật trong trẻ. Bộ đất nặn Kiddy Clay 6 màu cùng bộ phụ kiện hình thú cho bé tạo ra một bộ sưu tập các con thú sống động. Bé sẽ tạo ra các loại thú khác nhau chỉ bằng cách sử dụng bộ đất nặn Kiddy Clay và sự sáng tạo.', '1', '7', null, null, null, '1');
-INSERT INTO `san_pham` VALUES ('5', '4M – Tranh khảm cửa sổ mini nàng tiên cá', '139000', null, 'Tranh khảm mini hình nàng tiên cá 4M rất thích hợp cho những em bé gái trang trí cửa sổ hay góc học tập trong phòng. Với những miếng khảm đủ màu sẽ dính trên hầu hết các bề mặt sáng bóng như mặt kính, bé sẽ ghép khớp lại với nhau trên bản phác thảo có sẵn để tạo thành hình nàng tiên cá xinh xắn. Tranh khảm 4M này không chỉ làm cho cửa kính phòng bé thêm sinh động mà còn giúp bé rèn luyện sự khéo léo, tính cẩn thận.', '1', '7', null, null, null, '1');
-INSERT INTO `san_pham` VALUES ('6', 'Xe tải thả vật nuôi Benho [YT6027]', '235000', null, 'Thông tin chi tiết sản phẩm\r\n\r\nXe thả vật nuôi [YT6027]\r\nXe thả hình, giúp trẻ nhận biết về các con vật thân quen với những đặc trưng riêng biệt của chúng. \r\nĐồng thời giúp trẻ nhận biết về sự tương thích, bé phải tìm cửa để nhét các con vật vào đúng cửa cho chúng. \r\nVới sản phẩm này, bé sẽ kéo xe đi khắp nơi để khoe mọi người. \r\nSản phẩm phù hợp cho bé từ 2-4 tuổi. \r\nKích thước 27*13.5*13.5cm.', '1', '7', null, null, null, '1');
-INSERT INTO `san_pham` VALUES ('7', 'Điện thoại di động Nokia Lumia 520', '3840000', 'images/dt/Nokia-Lumia-520-l.jpg', 'Màn hình: WVGA, 4.0 inches\r\nHĐH: Windows Phone 8\r\nCPU: Dual-core 1 GHz\r\nCamera: 5.0 MP\r\nDung lượng pin: 1430 mAh\r\nBảo hành chính hãng 12 tháng (xem điểm bảo hành)\r\nBộ sản phẩm gồm có: Thân máy, pin, sạc, cáp, tai nghe, sách hướng dẫn (xem ảnh mở hộp)', '1', '1', null, null, null, null);
-INSERT INTO `san_pham` VALUES ('8', 'Điện thoại di động Samsung Galaxy S3 I9300', '10900000', 'images/dt/Samsung-Galaxy-S3-I9300-l.jpg', 'Màn hình HD, 4.8 inches\r\nHĐH: Android 4.0.4 (ICS)\r\nCPU: Quad-core 1.4 GHz\r\nCamera: 8.0 MP\r\nDung lượng pin: 2100 mAh\r\nBảo hành chính hãng 12 tháng (xem điểm bảo hành)\r\nBộ sản phẩm gồm có: Thân máy, pin, sạc, tai nghe, cáp, sách hướng dẫn. (xem ảnh mở hộp)', '1', '1', null, null, null, null);
-INSERT INTO `san_pham` VALUES ('9', 'Điện thoại di động Nokia C3-01.5', '6390000', 'images/dt/HTC-Desire-U-l.jpg', 'Điện thoại mạ vàng 18 cara\r\nMàn hình QVGA, 2.4 inches\r\nCamera: 5.0 MP\r\nHỗ trợ thẻ nhớ đến 32GB\r\nDung lượng pin 1050 mAh\r\nBảo hành chính hãng 12 tháng', '1', '1', null, null, null, null);
-INSERT INTO `san_pham` VALUES ('10', 'Điện thoại di động LG Optimus L5 II Dual E455', '4290000', 'images/dt/LG-Optimus-L5-II-Dual-l.jpg', 'Màn hình: WVGA, 4.0 inches\r\nHĐH: Android 4.1 (Jelly Bean)\r\nCPU: Solo-core 1 GHz\r\nCamera: 5.0 MP\r\nDung lượng pin: 1700 mAh', '1', '1', null, null, null, null);
-INSERT INTO `san_pham` VALUES ('11', 'Điện thoại di động HTC Desire U', '5290000', 'images/dt/HTC-Desire-U-l.jpg', 'Màn hình: WVGA, 4.0 inches\r\nHĐH: Android 4.0.4 (ICS)\r\nCPU: Solo-core 1 GHz\r\nCamera: 5.0 MP\r\nDung lượng pin: 1650 mAh\r\nBảo hành chính hãng 12 tháng (xe', '1', '1', null, null, null, null);
-INSERT INTO `san_pham` VALUES ('12', 'Điện thoại di động Alcatel One Touch Idol 6030D', '5490000', 'images/dt/Alcatel-One-Touch-Idol-6030D-l.jpg', 'Màn hình: qHD, 4.66 inches\r\nHĐH: Android 4.1.2 (Jelly Bean)\r\nCPU: Dual-core 1 GHz\r\nCamera: 8.0 MP\r\nDung lượng pin: 1800 mAh\r\nBảo hành chính hãng 12 tháng ', '1', '1', null, null, null, null);
+INSERT INTO `san_pham` VALUES ('1', 'Bobi Craft 103BRW-XL – Gia đình nhà gấu / 30cm', '579000', null, 'Bộ thú bông gia đình nhà gấu Bobi Craft 103BRW-XL được làm hoàn toàn bằng tay nên rất tinh xảo và mang giá trị nghệ thuật cao. Bên cạnh đó chất liệu len nhập khẩu cao cấp cho sản phẩm màu sắc đẹp mắt và đặc biệt an toàn cho bé khi sử dụng. Với bộ thú bông gia đình nhà gấu, bé sẽ thỏa thích chơi trò chơi gia đình để phát triển khả năng ngôn ngữ trong quá trình giao tiếp với những người bạn nhỏ này.', '1', '7', null, null, '2', '12');
+INSERT INTO `san_pham` VALUES ('2', 'Dragon Itoys - Chuột hamster Chatimals biết nói  Hồng', '399000', null, 'Chú chuột hamster Chatimals Dragon Itoys xinh xắn biết nói sẽ sớm trở thành người bạn thân thiết với bé những khi bố mẹ bận rộn và phải để bé chơi 1 mình. Chỉ cần nhấn vào bàn tay trái của chú chuột và nói chuyện với chú ta, chú sẽ lặp lại bất cứ điều gì bạn nói, thậm chí là miệng chú ta còn cử động thật sự. Đặc biệt, Chú chuột hamster Chatimals Dragon Itoys còn có thể chọn cách đáp lại bằng giọng cao hay thấp để gây nên sự bất ngờ thú vị và sẽ khiến bất cứ ai nghe thấy đều phải bật cười. Chú chuột có hình dáng tròn trịa của một con thú nhồi bông và khoác lên mình lớp lông mềm mại sẽ càng giúp các bé yêu chú thêm.\r\n\r\nChú chuột hamster Chatimals Dragon Itoys xinh xắn biết nói sẽ sớm trở thành người bạn thân thiết với bé những khi bố m', '1', '7', null, null, null, '12');
+INSERT INTO `san_pham` VALUES ('3', 'Disney – Thú nhồi bông Mickey / 14cm', '129000', null, 'hú nhồi bông là một trong những người bạn thơ ấu thân thiết của mọi trẻ nhỏ. Bố mẹ hãy trang bị cho bé yêu nhà mình một chú chuột Mickey Disney xinh xắn có thiết kế kiểu dáng đứng cho bé dễ dàng ôm khi chơi hay khi ngủ. Sản phẩm được làm từ chất liệu bông mềm mại sẽ cho bé yêu cảm giác được ôm ấp, vuốt ve, dễ chịu, đỡ quấy khóc hơn. Ngoài ra, chú chuột Mickey Disney còn có thể trở thành một món đồ nội thất ngộ nghĩnh cho gia đình bạn. ', '1', '7', null, null, null, '12');
+INSERT INTO `san_pham` VALUES ('4', 'Kiddy Clay SKB12 – Đất nặn và bộ phụ kiện hình thú', '109000', null, 'Được tự tay tạo ra những con vật, cây cối bằng đất sét luôn khiến trẻ thích thú. Bé được thỏa sức sáng tạo hay mô phỏng những con vật, đồ vật xung quanh bằng chính đôi bàn tay của mình. Việc này không những giúp bé rèn luyện sự khéo léo mà còn góp phần phát triển tư duy nghệ thuật trong trẻ. Bộ đất nặn Kiddy Clay 6 màu cùng bộ phụ kiện hình thú cho bé tạo ra một bộ sưu tập các con thú sống động. Bé sẽ tạo ra các loại thú khác nhau chỉ bằng cách sử dụng bộ đất nặn Kiddy Clay và sự sáng tạo.', '1', '7', null, null, null, '12');
+INSERT INTO `san_pham` VALUES ('5', '4M – Tranh khảm cửa sổ mini nàng tiên cá', '139000', null, 'Tranh khảm mini hình nàng tiên cá 4M rất thích hợp cho những em bé gái trang trí cửa sổ hay góc học tập trong phòng. Với những miếng khảm đủ màu sẽ dính trên hầu hết các bề mặt sáng bóng như mặt kính, bé sẽ ghép khớp lại với nhau trên bản phác thảo có sẵn để tạo thành hình nàng tiên cá xinh xắn. Tranh khảm 4M này không chỉ làm cho cửa kính phòng bé thêm sinh động mà còn giúp bé rèn luyện sự khéo léo, tính cẩn thận.', '1', '7', null, null, null, '12');
+INSERT INTO `san_pham` VALUES ('6', 'Xe tải thả vật nuôi Benho [YT6027]', '235000', null, 'Thông tin chi tiết sản phẩm\r\n\r\nXe thả vật nuôi [YT6027]\r\nXe thả hình, giúp trẻ nhận biết về các con vật thân quen với những đặc trưng riêng biệt của chúng. \r\nĐồng thời giúp trẻ nhận biết về sự tương thích, bé phải tìm cửa để nhét các con vật vào đúng cửa cho chúng. \r\nVới sản phẩm này, bé sẽ kéo xe đi khắp nơi để khoe mọi người. \r\nSản phẩm phù hợp cho bé từ 2-4 tuổi. \r\nKích thước 27*13.5*13.5cm.', '1', '7', null, null, null, '12');
+INSERT INTO `san_pham` VALUES ('7', 'Điện thoại di động Nokia Lumia 520', '3840000', 'images/dt/Nokia-Lumia-520-l.jpg', 'Màn hình: WVGA, 4.0 inches\r\nHĐH: Windows Phone 8\r\nCPU: Dual-core 1 GHz\r\nCamera: 5.0 MP\r\nDung lượng pin: 1430 mAh\r\nBảo hành chính hãng 12 tháng (xem điểm bảo hành)\r\nBộ sản phẩm gồm có: Thân máy, pin, sạc, cáp, tai nghe, sách hướng dẫn (xem ảnh mở hộp)', '1', '1', '8', null, null, '1');
+INSERT INTO `san_pham` VALUES ('8', 'Điện thoại di động Samsung Galaxy S3 I9300', '10900000', 'images/dt/Samsung-Galaxy-S3-I9300-l.jpg', 'Màn hình HD, 4.8 inches\r\nHĐH: Android 4.0.4 (ICS)\r\nCPU: Quad-core 1.4 GHz\r\nCamera: 8.0 MP\r\nDung lượng pin: 2100 mAh\r\nBảo hành chính hãng 12 tháng (xem điểm bảo hành)\r\nBộ sản phẩm gồm có: Thân máy, pin, sạc, tai nghe, cáp, sách hướng dẫn. (xem ảnh mở hộp)', '1', '1', '5', null, null, '1');
+INSERT INTO `san_pham` VALUES ('9', 'Điện thoại di động Nokia C3-01.5', '6390000', 'images/dt/HTC-Desire-U-l.jpg', 'Điện thoại mạ vàng 18 cara\r\nMàn hình QVGA, 2.4 inches\r\nCamera: 5.0 MP\r\nHỗ trợ thẻ nhớ đến 32GB\r\nDung lượng pin 1050 mAh\r\nBảo hành chính hãng 12 tháng', '1', '1', '2', null, null, '1');
+INSERT INTO `san_pham` VALUES ('10', 'Điện thoại di động LG Optimus L5 II Dual E455', '4290000', 'images/dt/LG-Optimus-L5-II-Dual-l.jpg', 'Màn hình: WVGA, 4.0 inches\r\nHĐH: Android 4.1 (Jelly Bean)\r\nCPU: Solo-core 1 GHz\r\nCamera: 5.0 MP\r\nDung lượng pin: 1700 mAh', '1', '1', '1', null, null, '1');
+INSERT INTO `san_pham` VALUES ('11', 'Điện thoại di động HTC Desire U', '5290000', 'images/dt/HTC-Desire-U-l.jpg', 'Màn hình: WVGA, 4.0 inches\r\nHĐH: Android 4.0.4 (ICS)\r\nCPU: Solo-core 1 GHz\r\nCamera: 5.0 MP\r\nDung lượng pin: 1650 mAh\r\nBảo hành chính hãng 12 tháng (xe', '1', '1', '14', null, null, '1');
+INSERT INTO `san_pham` VALUES ('12', 'Điện thoại di động Alcatel One Touch Idol 6030D', '5490000', 'images/dt/Alcatel-One-Touch-Idol-6030D-l.jpg', 'Màn hình: qHD, 4.66 inches\r\nHĐH: Android 4.1.2 (Jelly Bean)\r\nCPU: Dual-core 1 GHz\r\nCamera: 8.0 MP\r\nDung lượng pin: 1800 mAh\r\nBảo hành chính hãng 12 tháng ', '1', '1', '7', null, null, '1');
 INSERT INTO `san_pham` VALUES ('13', null, null, null, null, null, '2', null, null, null, null);
 INSERT INTO `san_pham` VALUES ('14', null, null, null, null, null, '2', null, null, null, null);
 INSERT INTO `san_pham` VALUES ('15', null, null, null, null, null, '2', null, null, null, null);
@@ -262,11 +258,13 @@ INSERT INTO `san_pham` VALUES ('72', null, null, null, null, null, '12', null, n
 INSERT INTO `san_pham` VALUES ('73', null, null, null, null, null, '12', null, null, null, null);
 INSERT INTO `san_pham` VALUES ('74', null, null, null, null, null, '12', null, null, null, null);
 INSERT INTO `san_pham` VALUES ('75', null, null, null, null, null, '12', null, null, null, null);
-INSERT INTO `tai_khoan` VALUES ('1', 'seller01', '999999999', '1', '1', 'phuocvoquang@gmail.com', '12345678', 'Quảng Trị', null);
-INSERT INTO `tai_khoan` VALUES ('2', 'seller02', '123456', '2', '1', 'tester1@gmail.com', '1655888851', '99999', '234234');
-INSERT INTO `tai_khoan` VALUES ('3', 'nguoiban1', '123456', '1', '1', 'phuocvoquang@gmail.com', '01655888851', 'Quan 3, tp.HCM', 'top');
+INSERT INTO `san_pham` VALUES ('76', '9', '9', 'image/17325_406788449428482_1005008506_n.jpg', '9999', '1', '1', '9', '0', '0', '2');
+INSERT INTO `tai_khoan` VALUES ('1', 'top123', '123456', '2', '1', '23423423', '4234234', '423423423', '34234234');
+INSERT INTO `tai_khoan` VALUES ('2', 'seller', '123456', '1', '1', '123456', '12312312', '123123123', '123456');
+INSERT INTO `tai_khoan` VALUES ('3', 'buyer1', '123456', '2', '1', '1231231', '123123', '123123', '123456');
+INSERT INTO `tai_khoan` VALUES ('4', 'admin', '123456', '3', '1', null, null, null, null);
 INSERT INTO `tinh_trang_san_pham` VALUES ('0', 'còn hàng');
 INSERT INTO `tinh_trang_san_pham` VALUES ('1', 'hết hàng');
-INSERT INTO `trang_thai_tai_khoan` VALUES ('0', 'Đã kích hoạt', null);
-INSERT INTO `trang_thai_tai_khoan` VALUES ('1', 'Khóa', null);
-INSERT INTO `trang_thai_tai_khoan` VALUES ('2', 'Chưa kích hoạt', null);
+INSERT INTO `trang_thai_tai_khoan` VALUES ('0', 'Chưa kích hoạt', null);
+INSERT INTO `trang_thai_tai_khoan` VALUES ('1', 'Đã kích hoạt', null);
+INSERT INTO `trang_thai_tai_khoan` VALUES ('2', 'Khóa', null);
