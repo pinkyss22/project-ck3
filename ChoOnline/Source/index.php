@@ -15,6 +15,11 @@
 		<title>Tools Shop</title>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link href="css/nivo-slider.css" rel="stylesheet" type="text/css" />
+		<script src="js/jquery-1.5.1.js" type="text/javascript"></script>
+		<script src="js/jquery.cycle.all.latest.js" type="text/javascript"></script>
+		<script src="js/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+		<script src="js/nivo.js" type="text/javascript"></script>
 		<!--[if IE 6]>
 		<link rel="stylesheet" type="text/css" href="css/iecss.css" />
 		<![endif]-->
@@ -30,7 +35,7 @@
 		include ('menutab.html');
 	?>
     <!-- end of menu tab -->
-    <div class="crumb_navigation"> Navigation: <span class="current">Trang chủ</span> </div>
+    <div class="crumb_navigation"> <span class="current">Trang chủ</span> </div>
     <?php
 		include ('left_content.php');
 	?>
@@ -38,91 +43,58 @@
     <div class="center_content">
       <div class="oferta"> <img src="images/p1.png" width="165" height="113" border="0" class="oferta_img" alt="" />
         <div class="oferta_details">
-          <div class="oferta_title">Power Tools BST18XN Cordless</div>
-          <div class="oferta_text"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco </div>
+          <div class="oferta_title">Galaxy S3 I9300</div>
+          <div class="oferta_text"> Galaxy S3 I9300 là sản p </div>
           <a href="http://all-free-download.com/free-website-templates/" class="prod_buy">details</a> </div>
       </div>
       <div class="center_title_bar">Latest Products</div>
-      <div class="prod_box">
-        <div class="center_prod_box">
-          <div class="product_title"><a href="http://all-free-download.com/free-website-templates/">Makita 156 MX-VL</a></div>
-          <div class="product_img"><a href="http://all-free-download.com/free-website-templates/"><img src="images/p1.jpg" alt="" border="0" /></a></div>
-          <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
-        </div>
-        <div class="prod_details_tab"> <a href="http://all-free-download.com/free-website-templates/" class="prod_buy">Add to Cart</a> <a href="http://all-free-download.com/free-website-templates/" class="prod_details">Details</a> </div>
-      </div>
-      <div class="prod_box">
-        <div class="center_prod_box">
-          <div class="product_title"><a href="http://all-free-download.com/free-website-templates/">Bosch XC</a></div>
-          <div class="product_img"><a href="http://all-free-download.com/free-website-templates/"><img src="images/p2.jpg" alt="" border="0" /></a></div>
-          <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
-        </div>
-        <div class="prod_details_tab"> <a href="http://all-free-download.com/free-website-templates/" class="prod_buy">Add to Cart</a> <a href="http://all-free-download.com/free-website-templates/" class="prod_details">Details</a> </div>
-      </div>
-      <div class="prod_box">
-        <div class="center_prod_box">
-          <div class="product_title"><a href="http://all-free-download.com/free-website-templates/">Lotus PP4</a></div>
-          <div class="product_img"><a href="http://all-free-download.com/free-website-templates/"><img src="images/p4.jpg" alt="" border="0" /></a></div>
-          <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
-        </div>
-        <div class="prod_details_tab"> <a href="http://all-free-download.com/free-website-templates/" class="prod_buy">Add to Cart</a> <a href="http://all-free-download.com/free-website-templates/" class="prod_details">Details</a> </div>
-      </div>
-      <div class="prod_box">
-        <div class="center_prod_box">
-          <div class="product_title"><a href="http://all-free-download.com/free-website-templates/">Makita 156 MX-VL</a></div>
-          <div class="product_img"><a href="http://all-free-download.com/free-website-templates/"><img src="images/p3.jpg" alt="" border="0" /></a></div>
-          <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
-        </div>
-        <div class="prod_details_tab"> <a href="http://all-free-download.com/free-website-templates/" class="prod_buy">Add to Cart</a> <a href="http://all-free-download.com/free-website-templates/" class="prod_details">Details</a> </div>
-      </div>
-      <div class="prod_box">
-        <div class="center_prod_box">
-          <div class="product_title"><a href="http://all-free-download.com/free-website-templates/">Bosch XC</a></div>
-          <div class="product_img"><a href="http://all-free-download.com/free-website-templates/"><img src="images/p5.jpg" alt="" border="0" /></a></div>
-          <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
-        </div>
-        <div class="prod_details_tab"> <a href="http://all-free-download.com/free-website-templates/" class="prod_buy">Add to Cart</a> <a href="http://all-free-download.com/free-website-templates/" class="prod_details">Details</a> </div>
-      </div>
-      <div class="prod_box">
-        <div class="center_prod_box">
-          <div class="product_title"><a href="http://all-free-download.com/free-website-templates/">Lotus PP4</a></div>
-          <div class="product_img"><a href="http://all-free-download.com/free-website-templates/"><img src="images/p6.jpg" alt="" border="0" /></a></div>
-          <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
-        </div>
-        <div class="prod_details_tab"> <a href="http://all-free-download.com/free-website-templates/" class="prod_buy">Add to Cart</a> <a href="http://all-free-download.com/free-website-templates/" class="prod_details">Details</a> </div>
-      </div>
-      <div class="center_title_bar">Recomended Products</div>
-      <div class="prod_box">
-        <div class="center_prod_box">
-          <div class="product_title"><a href="http://all-free-download.com/free-website-templates/">Makita 156 MX-VL</a></div>
-          <div class="product_img"><a href="http://all-free-download.com/free-website-templates/"><img src="images/p7.jpg" alt="" border="0" /></a></div>
-          <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
-        </div>
-        <div class="prod_details_tab"> <a href="http://all-free-download.com/free-website-templates/" class="prod_buy">Add to Cart</a> <a href="http://all-free-download.com/free-website-templates/" class="prod_details">Details</a> </div>
-      </div>
-      <div class="prod_box">
-        <div class="center_prod_box">
-          <div class="product_title"><a href="http://all-free-download.com/free-website-templates/">Bosch XC</a></div>
-          <div class="product_img"><a href="http://all-free-download.com/free-website-templates/"><img src="images/p1.jpg" alt="" border="0" /></a></div>
-          <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
-        </div>
-        <div class="prod_details_tab"> <a href="http://all-free-download.com/free-website-templates/" class="prod_buy">Add to Cart</a> <a href="http://all-free-download.com/free-website-templates/" class="prod_details">Details</a> </div>
-      </div>
-      <div class="prod_box">
-        <div class="center_prod_box">
-          <div class="product_title"><a href="http://all-free-download.com/free-website-templates/">Lotus PP4</a></div>
-          <div class="product_img"><a href="http://all-free-download.com/free-website-templates/"><img src="images/p3.jpg" alt="" border="0" /></a></div>
-          <div class="prod_price"><span class="reduce">350$</span> <span class="price">270$</span></div>
-        </div>
-        <div class="prod_details_tab"> <a href="http://all-free-download.com/free-website-templates/" class="prod_buy">Add to Cart</a> <a href="http://all-free-download.com/free-website-templates/" class="prod_details">Details</a> </div>
-      </div>
+	  <?php
+		$con = mysqli_connect('localhost','root','root','choonline1');
+		$res = mysqli_query($con, "select * from san_pham");
+		$dem =1;
+		while($row=mysqli_fetch_array($res))
+		{
+		if($dem<=12)
+		{
+			echo "<div class='prod_box'>";
+			echo "<div class='center_prod_box'>";
+			echo "<div class='product_title'>";
+			echo "<a href=''>";
+			echo $row['Ten_san_pham'];
+			echo "</a>";
+			echo "</div>";
+			 echo "<div class='product_img'>";
+			 $ma_sp = $row['Ma_san_pham'];
+			  echo "<a href='chi-tiet.php?id=$ma_sp'>";
+			  echo "<img src='$row[Hinh_dai_dien]' alt='' border='0' width ='173' height='80'/>";
+			  echo "</a>";
+			  echo "</div>";
+			  echo "<div class='prod_price'>";
+			  echo "<span class='price'>";
+			  echo $row['Gia_ban'];
+			  echo " VNĐ";
+			  echo "</span>";
+			  echo "</div>";
+			  echo "</div>";
+			   echo "<div class='prod_details_tab'>";
+			echo "<a href='' class='prod_buy'>";
+			echo "Add to Cart";
+			echo "</a>"; 
+			echo "<a href='' class='prod_details'>";
+			echo "Details";
+			echo "</a>";
+			echo "</div>";
+			echo "</div>";
+			$dem++;
+			}
+		}
+	  ?>
     </div>
     <!-- end of center content -->
     <div class="right_content">
-      <div class="title_box">Search</div>
-      <div class="border_box">
-        <input type="text" name="newsletter" class="newsletter_input" value="keyword"/>
-        <a href="http://all-free-download.com/free-website-templates/" class="join">search</a> </div>
+      <?php
+		include "timkiem.php";
+	  ?>
       <div class="shopping_cart">
         <div class="title_box">Shopping cart</div>
         <div class="cart_details"> 3 items <br />
@@ -130,77 +102,12 @@
         <div class="cart_icon"><a href="http://all-free-download.com/free-website-templates/"><img src="images/shoppingcart.png" alt="" width="35" height="35" border="0" /></a></div>
       </div>
       <div class="title_box">Đăng nhập</div>
-      <div class="border_box">
-			<table style="font-size: 11px;">
-			<?php
-				if($count ==1)
-				{
-					echo "<tr>";
-						echo "<td>";
-							echo "<div class='product_title'>";
-							echo $name;
-							echo "</div>";
-						echo "</td>";			
-					echo "</tr>";
-					echo "<tr>";
-						echo "<td>";
-						echo "<a href='logout.php'>";
-						echo "Đăng xuất";
-						echo "</a>";
-				}
-				else
-				{
-					?>
-					<tr>
-					<td>
-						<div class="product_title">Tên đăng nhập</div>
-					</td>			
-				</tr>
-				<tr>
-				<form action ='login.php' method='post'>
-					<td>
-						<input type="text" width="90%" name="ten_dang_nhap"/>
-					</td>			
-				</tr>
-				<tr>
-					<td>
-						<div class="product_title">Password</div>
-					</td>			
-				</tr>
-				<tr>
-					<td>
-						<input type="password" width="90%" name="mat_khau"/>
-					</td>			
-				</tr>
-				<tr>
-					<td style="text-align:right;">
-						<input type="submit" width="30%" value="Đăng nhập"/>
-					</td>
-				</form>					
-				</tr>
-				<?php
-				}
-			?>
-				
-			</table>
-      </div>
-	  <?php
-		if($$count ==1)
-		{
-			
-		}
+      <?php
+		include ('dangnhap.php');
 	  ?>
-      <div class="title_box">Manufacturers</div>
-      <ul class="left_menu">
-        <li class="odd"><a href="http://all-free-download.com/free-website-templates/">Bosch</a></li>
-        <li class="even"><a href="http://all-free-download.com/free-website-templates/">Samsung</a></li>
-        <li class="odd"><a href="http://all-free-download.com/free-website-templates/">Makita</a></li>
-        <li class="even"><a href="http://all-free-download.com/free-website-templates/">LG</a></li>
-        <li class="odd"><a href="http://all-free-download.com/free-website-templates/">Fujitsu Siemens</a></li>
-        <li class="even"><a href="http://all-free-download.com/free-website-templates/">Motorola</a></li>
-        <li class="odd"><a href="http://all-free-download.com/free-website-templates/">Phillips</a></li>
-        <li class="even"><a href="http://all-free-download.com/free-website-templates/">Beko</a></li>
-      </ul>
+	  <?php
+		include ('thongtin-dangnhap.php');
+	  ?>
       <div class="banner_adds"> <a href="http://all-free-download.com/free-website-templates/"><img src="images/bann1.jpg" alt="" border="0" /></a> </div>
     </div>
     <!-- end of right content -->
